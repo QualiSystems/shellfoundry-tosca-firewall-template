@@ -1,8 +1,6 @@
 import datetime
 import json
 
-from cloudshell.networking.apply_connectivity.apply_connectivity_operation import apply_connectivity_changes
-from cloudshell.networking.apply_connectivity.models.connectivity_result import ConnectivitySuccessResponse
 from cloudshell.shell.core.interfaces.save_restore import OrchestrationSaveResult, OrchestrationSavedArtifact, \
     OrchestrationSavedArtifactInfo, OrchestrationRestoreRules
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
@@ -166,31 +164,6 @@ class {{cookiecutter.driver_name}} (ResourceDriverInterface):
         return saved_details_object[u'saved_artifact'][u'identifier']
         '''
         pass
-
-    # </editor-fold>
-
-    # <editor-fold desc="Connectivity Provider Interface (Optional)">
-
-    '''
-    # The ApplyConnectivityChanges function is intended to be used for using switches as connectivity providers
-    # for other devices. If the Switch shell is intended to be used a DUT only there is no need to implement it
-
-    def ApplyConnectivityChanges(self, context, request):
-        """
-        Configures VLANs on multiple ports or port-channels
-        :param ResourceCommandContext context: The context object for the command with resource and reservation info
-        :param str request: A JSON object with the list of requested connectivity changes
-        :return: a json object with the list of connectivity changes which were carried out by the switch
-        :rtype: str
-        """
-
-        return apply_connectivity_changes(request=request,
-                                          add_vlan_action=lambda x: ConnectivitySuccessResponse(x,'Success'),
-                                          remove_vlan_action=lambda x: ConnectivitySuccessResponse(x,'Success'))
-
-
-
-    '''
 
     # </editor-fold>
 
